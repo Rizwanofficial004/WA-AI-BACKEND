@@ -85,8 +85,8 @@ app.use('/webhook', webhookRoutes);
 const testRoutes = require('./routes/testRoutes');
 app.use('/api/test', testRoutes);
 
-// Serve static files in production
-if (process.env.NODE_ENV === 'production') {
+// Serve static files in production (skip on Vercel — frontend is served separately)
+if (process.env.NODE_ENV === 'production' && !process.env.VERCEL) {
   app.use(express.static(path.join(__dirname, '../../frontend/build')));
   
   app.get('*', (req, res) => {

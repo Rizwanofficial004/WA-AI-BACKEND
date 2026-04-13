@@ -37,10 +37,7 @@ const connectRedis = () => {
 };
 
 const getRedis = () => {
-  if (!redis) {
-    throw new Error('Redis not initialized. Call connectRedis() first.');
-  }
-  return redis;
+  return redis || null;
 };
 
 // Graceful shutdown
